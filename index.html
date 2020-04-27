@@ -128,17 +128,16 @@
         }
       };
 
-      const deletePatron = (str='', p='') => {
+      const deletePatron = (str = "", p = "") => {
         try {
           if (str.trim() === "" || p.trim === "")
             throw new Error("Cadena vacia");
 
           let array = str.split(p),
-            aux = '';
+            aux = "";
 
-          for (let i = 0; i < array.length; i++){ 
-            if (array[i] === p)
-              continue;
+          for (let i = 0; i < array.length; i++) {
+            if (array[i] === p) continue;
             aux += array[i];
           }
           return aux;
@@ -175,8 +174,7 @@
           const palindromo = invertir(str);
           if (str.trim() == palindromo.trim())
             alert(`"${str}" es un palíndromo`);
-          else
-            alert(`"${str}" no es un palíndromo`);
+          else alert(`"${str}" no es un palíndromo`);
           break;
         }
         case "4": {
