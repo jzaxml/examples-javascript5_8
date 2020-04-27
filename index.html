@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios Basicos Javascript</title>
+  </head>
+  <body>
+    <script>
+      /*  
+        1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+        2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+        3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+        4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+
+      function miFuncion1(str = "") {
+        try {
+          if (str.trim() === "") throw new Error("Error tipo de dato");
+          return str.length;
+        } catch (e) {
+          return e;
+        }
+      }
+
+      function miFuncion2(str, number) {
+        try {
+          if (str.trim() === "") throw new Error("Error en cadena de texto.");
+          if (number.trim() === "" || isNaN(number))
+            throw new Error("Error de rango");
+          return str.substring(0, parseInt(number));
+        } catch (e) {
+          return e;
+        }
+      }
+
+      function miFuncion3(str) {
+        try {
+          if (str.trim() === "") throw new Error("Error en cadena de texto.");
+          return str.split(" ");
+        } catch (e) {
+          return e;
+        }
+      }
+
+      function miFuncion4(str, number) {
+        try {
+          if (str.trim() === "") throw new Error("Error cadena de texto.");
+          let element = "";
+          for (let i = 0; i < parseInt(number); i++) {
+            element += str + "\n";
+          }
+          return element;
+        } catch (e) {
+          return e;
+        }
+      }
+
+      const opc = prompt(`
+        Ejercicios basicos de JavaScript
+        \n1-Funcion que cuenta el número de caracteres de una cadena de texto.
+        \n2-Funcion que devuelva el texto recortado según
+        \nel número de caracteres indicados.
+        \n3-función que dada una String te devuelva un Array
+        \nde textos separados por cierto caracter.
+        \n4-Función que repita un texto X veces.
+      `);
+
+      switch (opc) {
+        case "1": {
+          const str = prompt("Ingrese cadena de texto");
+          alert(miFuncion1(str));
+          break;
+        }
+        case "2": {
+          const str = prompt("Ingrese cadena de texto") || undefined;
+          const rg = prompt(`Ingrese un rango[0,${str.length}]`);
+          alert("Nueva cadena: " + miFuncion2(str, rg));
+          break;
+        }
+        case "3": {
+          const str = prompt("Ingrese cadena de texto");
+          const arreglo = miFuncion3(str);
+          alert(`Array: [${arreglo}]`);
+          break;
+        }
+        case "4": {
+          const str = prompt("Ingrese cadena de texto");
+          const n = prompt("Ingrese un numero");
+          alert(miFuncion4(str, n));
+          break;
+        }
+        default:
+          alert("Opcion invalida..");
+          break;
+      }
+      */
+      /*
+      5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+      6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+      7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+      8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+      */
+
+      const invertir = (str = "") => {
+        try {
+          if (str.trim() === "") throw new Error("Cadena vacia");
+          let inv = " ";
+          for (let i = str.length; i > 0; i--) inv += str[i - 1];
+          return inv;
+        } catch (e) {
+          return e;
+        }
+      };
+
+      const wordRepeat = (str = "", word = "") => {
+        try {
+          if (str.trim() === "" || word.trim === "")
+            throw new Error("Cadena vacia");
+
+          let count = 0,
+            array = str.split(" ");
+
+          for (let i = 0; i < array.length; i++) if (array[i] === word) count++;
+
+          return count;
+        } catch (e) {
+          return e;
+        }
+      };
+
+      const deletePatron = (str='', p='') => {
+        try {
+          if (str.trim() === "" || p.trim === "")
+            throw new Error("Cadena vacia");
+
+          let array = str.split(p),
+            aux = '';
+
+          for (let i = 0; i < array.length; i++){ 
+            if (array[i] === p)
+              continue;
+            aux += array[i];
+          }
+          return aux;
+        } catch (e) {
+          return e;
+        }
+      };
+
+      let opc = prompt(`
+      \n1) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+      \n2) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+      \n3) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+      \n4) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+      `);
+      switch (opc) {
+        case "1": {
+          const str = prompt("Ingrese cadena de texto");
+          alert(`Original: ${str}\nInvertida: ${invertir(str)}`);
+          break;
+        }
+        case "2": {
+          const str = prompt("Ingrese cadena de texto");
+          const word = prompt("Ingrese una palabra");
+          const n = wordRepeat(str, word);
+          if (!isNaN(n))
+            alert(
+              `La palabra "${word}" se encuentra ${n} veces en la cadena de texto`
+            );
+          else alert(n);
+          break;
+        }
+        case "3": {
+          const str = prompt("Ingrese cadena de texto");
+          const palindromo = invertir(str);
+          if (str.trim() == palindromo.trim())
+            alert(`"${str}" es un palíndromo`);
+          else
+            alert(`"${str}" no es un palíndromo`);
+          break;
+        }
+        case "4": {
+          const str = prompt("Ingrese cadena de texto");
+          const patron = prompt("Ingrese patron");
+          const New = deletePatron(str, patron);
+          alert(`Old: ${str} \nNew: ${New}`);
+          break;
+        }
+        default:
+          alert("Opcion invalida");
+          break;
+      }
+    </script>
+  </body>
+</html>
