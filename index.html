@@ -193,7 +193,7 @@
       }*/
       /*9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
         10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
-        11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.*/
+        11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
       
       const random = (min=undefined, max=undefined) => Math.floor(Math.random() * (max-min)) + min;
       
@@ -243,7 +243,74 @@
         }
         default:
           break;
+      }*/
+      /*12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+        13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+        14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.*/
+      const numeroPrimo = (n=undefined) => {
+        let divisores = 0;
+        for (let i = 1; i <= n; i++)
+          if (n%i === 0)
+            divisores++;
+        return (divisores===2)?true:false;
       }
+
+      const parImpar = (n=undefined) => (n%2===0)?true:false;
+
+      const Celsius_Fahrenheit = (grado='') => {
+        const temp = grado.toLowerCase();
+        const exp = /\d+(f|c)/.test(temp);
+        console.log(exp);
+        if (exp) {
+          if(temp.includes('c')) {
+            const aux = temp.split('c');
+            return (parseFloat(aux[0]) * 9/5) + 32;
+          } else if(temp.includes('f')) {
+            const aux = temp.split('f');
+            return (parseFloat(aux[0]) - 32) * 5/9;
+          } 
+        } return undefined;
+      }
+
+      const opc = prompt(`
+        \n1 - Función que determine si un número es primo
+        \n2 - Función que determine si un número es par o impar
+        \n3 - Función para convertir grados Celsius a Fahrenheit
+      `);
+
+      switch (opc) {
+        case '1': {
+          const numero = parseInt(prompt('Ingrese un número'));
+          (!isNaN(numero))
+          ?(numeroPrimo(numero))
+            ?alert(`${numero} es primo`)
+            :alert(`${numero} no es primo`)
+          :alert('Error de entrada de dato..');  
+          break;
+        }
+        case '2': {
+          const numero = parseInt(prompt('Ingrese un número'));
+          (!isNaN(numero))
+          ?(parImpar(numero))
+            ?alert(`${numero} es par`)
+            :alert(`${numero} es impar`)
+          :alert('Error de entrada de dato..');  
+          break;
+        }
+        case '3': {
+          let temp = 0.0,
+          numero = prompt(`Ingrese temperatura\nEje: 0C -> F\n       0F -> C`);
+          (numero.trim()!=='')
+          ?((temp = Celsius_Fahrenheit(numero)) !== undefined)
+            ?alert(`${numero} -> ${temp}F`)
+            :alert(`${numero} -> ${temp}C`)
+          :alert('Error de entrada de dato..'); 
+          break;
+        }
+        default:
+          break;
+      }
+
     </script>
   </body>
 </html>
