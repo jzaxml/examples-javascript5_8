@@ -246,7 +246,7 @@
       }*/
       /*12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
         13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
-        14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.*/
+        14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
       const numeroPrimo = (n=undefined) => {
         let divisores = 0;
         for (let i = 1; i <= n; i++)
@@ -309,8 +309,80 @@
         }
         default:
           break;
+      }*/
+      //15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+      const BinarioADecimal = (numero=undefined) => {
+        const exp = /(^1+|0+$)|(^0+|1+$)/.test(numero);
+        if(exp) {
+          let aux = 0;
+          for (let i = 0; i < numero.length; i++) {
+            if (parseInt(numero[numero.length-i-1]) === 0)
+              continue;
+            aux += 2**i;
+          } return aux;
+        } else return undefined;
       }
 
+      const DecimalABinario = (numero=undefined) => {
+        let aux = '', num = parseInt(numero);
+        for (let i = num; i > 0; ) {
+          aux = aux +' '+ i%2;
+          i = Math.trunc(i/2);
+        } return aux;
+      }
+      
+      //16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+      const descuento = (precio, desc) => precio-(precio*(desc/100));
+      
+      //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+      const yearTC = (anio=undefined) => {
+        const time = new Date().getFullYear();
+        return time-anio;
+      }
+
+      const opc = prompt(`
+      \n1 - 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+      \n2 - 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+      \n3 - 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+      `);
+      
+      switch (opc) {
+        case '1': {
+          const num = prompt(`1 - Conversion de binario a decimal.
+          \n2 - Conversion de decimal a binario.`);
+          if(num === '1'){
+            const val = prompt(`Ingrese un número binario`);
+            (!isNaN(val))
+            ?alert(`${val} -> ${BinarioADecimal(val)}`)
+            :alert('Error de entrada de dato.');
+          } else if (num === '2') {
+            const val = prompt(`Ingrese un número entero`);
+            (!isNaN(val))
+            ?alert(`${val} -> ${DecimalABinario(val)}`)
+            :alert('Error de entrada de dato.');
+          } else alert('Opcion invalida');
+          break;
+        }
+        case '2': {
+          const monto = prompt(`Ingrese un monto`);
+          const desc = prompt(`Ingrese un descuento`);
+          (monto.trim()!=='' || desc.trim()!=='')
+          ?(!isNaN(monto) && !isNaN(desc))
+            ?alert(`Monto final: ${monto}$ ${desc}% = ${descuento(parseFloat(monto), parseFloat(desc))}$`)
+            :alert('Error de entrada de dato')
+          :alert('Campo vacio');
+          break;
+        }
+        case '3': {
+          const date = prompt(`Ingrese un monto`);
+          (!isNaN(date))
+          ?alert(`${yearTC(date)} años`)
+          :alert('Error entrada de dato');
+          break;
+        }
+        default:
+          break;
+      }
     </script>
   </body>
 </html>
