@@ -384,6 +384,7 @@
         default:
           break;
       }*/
+      /*
       //18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
       const contarCaracter = (cadena=undefined) => {
         let cntVocal = 0,
@@ -413,7 +414,86 @@
       console.log(contarCaracter('Programa una función que valide que un texto sea un email válido'));
       console.log(validarNombre('Ana Maria'));
       console.log(validarCorreo('ana@gmail.com'));
+      */
       
+      //21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+      const arrayN = (array = undefined) => {
+        let arrayAux = [];
+        for (let i = 0; i < array.length; i++) {
+          const element = parseInt(array[i]);
+          arrayAux.push(element**2);
+        } return arrayAux;
+      }
+      //22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+      const Min_Max = (array=undefined) => {
+        const aux = [];
+        let min =array[0], max = 0;
+        for(let i = 0; i < array.length; i++) {
+          if (min > array[i])
+            min = array[i];
+          else if (max < array[i])
+            max = array[i];
+        }
+        return [min,max];
+      }
+      //23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+      const arrayParImpar = (array=undefined) => {
+        const par=[], impar=[];
+        for (let i = 0; i < array.length; i++)
+          (array[i]%2 === 0)?par.push(array[i]):impar.push(array[i]);
+        return {par, impar};
+      }
+
+      const option = prompt(`
+        \n21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+        \n22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+        \n23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.`)
+    
+      switch(option) {
+        case '1': {
+          const dato = prompt(`Ingrese un arreglo de números enteros\nEje: 1,2,3,4`).split(','),
+            array = [],
+            exp = /^([0-9])*$/;
+          
+          let lg = dato.length, i=0;
+          for(;i < lg && exp.test(dato[i]); array.push(parseInt(dato[i])), i++);
+          
+          (i === lg)
+            ?alert(`Array:  ${array}\nArray^2: ${arrayN(array)}`)
+            :alert('Error entrada de datos');
+          break;
+        }
+        case '2': {
+          const dato = prompt(`Ingrese un arreglo de números enteros \nEje: 1,2,3,4`).split(','),
+            array = [],
+            exp = /^([0-9])*$/;
+          
+          let lg = dato.length, i=0;
+          for(;i < lg && exp.test(dato[i]); array.push(parseInt(dato[i])), i++);
+          
+          (i === lg)
+            ?alert(`Array: ${array}\n[MIN,MAX]: [${Min_Max(array)}]`)
+            :alert('Error entrada de datos');
+          break;
+        }
+        case '3': {
+          const dato = prompt(`Ingrese un arreglo de números enteros \nEje: 1,2,3,4`).split(','),
+            array = [],
+            exp = /^([0-9])*$/;
+
+          let lg = dato.length, i=0;
+          for(;i < lg && exp.test(dato[i]); array.push(parseInt(dato[i])), i++);
+          
+          if(i === lg) {
+            const obj = arrayParImpar(array);
+            alert(`Array: ${array}\nPar: ${obj.par}\nImpar: ${obj.impar}`)
+          } else 
+            alert('Error entrada de datos');
+          break;
+        }
+        default:
+          break;
+      }
     </script>
   </body>
 </html>
