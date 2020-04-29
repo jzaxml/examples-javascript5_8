@@ -310,6 +310,7 @@
         default:
           break;
       }*/
+      /*
       //15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
       const BinarioADecimal = (numero=undefined) => {
         const exp = /(^1+|0+$)|(^0+|1+$)/.test(numero);
@@ -382,7 +383,37 @@
         }
         default:
           break;
+      }*/
+      //18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+      const contarCaracter = (cadena=undefined) => {
+        let cntVocal = 0,
+          cntCons = 0;
+        for (let i = 0; i < cadena.length; i++) {
+          if (cadena[i].includes('a')) cntVocal++;
+          if (cadena[i].includes('e')) cntVocal++;
+          if (cadena[i].includes('i')) cntVocal++;
+          if (cadena[i].includes('o')) cntVocal++;
+          if (cadena[i].includes('u')) cntVocal++;
+          else cntCons++;
+        }
+        return `Vocales: ${cntVocal} Consonantes: ${cntCons}`;
       }
+      
+      //19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+      const validarNombre = (nombre = undefined) => {
+        const numExp = /(\d+)/;
+        const nameExp = /(\w+)\s(\w+)/;
+        return (!numExp.test(nombre))
+        ?nameExp.test(nombre)
+        :false;
+      }
+      //20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+      const validarCorreo = (email=undefined) =>/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(email);
+      
+      console.log(contarCaracter('Programa una función que valide que un texto sea un email válido'));
+      console.log(validarNombre('Ana Maria'));
+      console.log(validarCorreo('ana@gmail.com'));
+      
     </script>
   </body>
 </html>
